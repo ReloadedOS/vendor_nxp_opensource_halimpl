@@ -19,7 +19,11 @@
 #include <phNfcStatus.h>
 #include <phNfcTypes.h>
 
-NFCSTATUS phNxpNciHal_fw_download_seq(uint8_t bClkSrcVal, uint8_t bClkFreqVal);
+#define PHLIBNFC_DNLD_CHECKINTEGRITY_OFFSET (0x07)
+
+NFCSTATUS phNxpNciHal_fw_dnld_switch_normal_mode();
+NFCSTATUS phNxpNciHal_fw_download_seq(uint8_t bClkSrcVal, uint8_t bClkFreqVal,
+        uint8_t seq_handler_offset = 0, bool bMinimalFw = false);
 #define STREAM_TO_UINT32(u32, p)                                      \
 {                                                                   \
   (u32) = (((uint32_t)(*(p))) + ((((uint32_t)(*((p) + 1)))) << 8) + \
